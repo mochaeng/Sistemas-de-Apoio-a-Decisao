@@ -44,3 +44,66 @@ CREATE TABLE fact (
     FOREIGN KEY (fk_temporal) REFERENCES dim_temporal(id_temporal),
     FOREIGN KEY (fk_location) REFERENCES dim_location(id_location)
 );
+
+
+
+
+-- average trip score over geographical region
+SELECT 
+	l.geo_region, AVG(f.trip_score) AS avg_trip_score
+FROM 
+    dim_location l
+INNER JOIN 
+    fact f 
+ON 
+    l.id_location = f.fk_location
+GROUP by l.geo_region
+ORDER by avg_trip_score DESC; 
+
+
+SELECT 
+	l.id_location, l.geo_region, f.trip_score
+FROM 
+    dim_location l
+INNER JOIN 
+    fact f 
+ON 
+    l.id_location = f.fk_location;
+
+-- average trip score per year
+SELECT 
+	tp.year, AVG(trip_score)
+FROM 
+    dim_location l
+INNER JOIN 
+    fact f 
+ON 
+    l.id_location = f.fk_location
+INNER JOIN
+	dim_temporal tp
+ON
+	tp.id_temporal = f.fk_temporal
+GROUP by tp.year
+ORDER BY tp.year ASC;
+
+-- binary metrics
+SELECT 
+	l.id_location, tp.id_temporal, l.country_name, tp.year,
+	has_direct_criminalization,has_indirect_criminalization,
+	has_gender_marker_change, has_non_binary,
+	has_antidiscrimination_protection, has_constitutional_protection
+	has_employmentl_protection, has_education_protection
+	has_healthcare_protection, has_housing_protection,
+ 	percent_religious, percent_christian, percent_muslim,
+	percent_non_religious, gdp_per_capita, regime_type,
+	trip_score
+FROM 
+    dim_location l
+INNER JOIN 
+    fact f 
+ON 
+    l.id_location = f.fk_location
+INNER JOIN
+	dim_temporal tp
+ON
+	tp.id_temporal = f.fk_temporal;

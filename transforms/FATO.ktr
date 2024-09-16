@@ -486,6 +486,57 @@
       </attribute>
     </attributes>
   </connection>
+  <connection>
+    <name>supabase</name>
+    <server>aws-0-sa-east-1.pooler.supabase.com</server>
+    <type>POSTGRESQL</type>
+    <access>Native</access>
+    <database>postgres</database>
+    <port>6543</port>
+    <username>postgres.gkmlgzwzzhunujxdqsee</username>
+    <password>Encrypted 2f3f7c2a70fcf9389aa10bd78d186f899</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_LOWERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>FORCE_IDENTIFIERS_TO_UPPERCASE</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>IS_CLUSTERED</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>PORT_NUMBER</code>
+        <attribute>6543</attribute>
+      </attribute>
+      <attribute>
+        <code>PRESERVE_RESERVED_WORD_CASE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>QUOTE_ALL_FIELDS</code>
+        <attribute>N</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_BOOLEAN_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>SUPPORTS_TIMESTAMP_DATA_TYPE</code>
+        <attribute>Y</attribute>
+      </attribute>
+      <attribute>
+        <code>USE_POOLING</code>
+        <attribute>Y</attribute>
+      </attribute>
+    </attributes>
+  </connection>
   <order>
     <hop>
       <from>Colunas_Desejadas</from>
@@ -544,7 +595,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <filename>/home/campos/college/sad/projeto/replication_data.tab</filename>
+    <filename>/home/campos/college/sad/projeto/misc/replication_data.tab</filename>
     <filename_field/>
     <rownum_field/>
     <include_filename>N</include_filename>
@@ -1149,23 +1200,18 @@
     <fields>
       <field>
         <name>country_name</name>
-        <rename/>
       </field>
       <field>
         <name>country_text_id</name>
-        <rename/>
       </field>
       <field>
         <name>country_id</name>
-        <rename/>
       </field>
       <field>
         <name>year</name>
-        <rename/>
       </field>
       <field>
         <name>v2x_polyarchy</name>
-        <rename/>
       </field>
       <field>
         <name>v2x_regime</name>
@@ -1173,11 +1219,9 @@
       </field>
       <field>
         <name>e_boix_regime</name>
-        <rename/>
       </field>
       <field>
         <name>e_polity2</name>
-        <rename/>
       </field>
       <field>
         <name>e_regionpol</name>
@@ -1185,7 +1229,6 @@
       </field>
       <field>
         <name>e_regionpol_6C</name>
-        <rename/>
       </field>
       <field>
         <name>dir_crim</name>
@@ -1245,11 +1288,9 @@
       </field>
       <field>
         <name>trip_score</name>
-        <rename/>
       </field>
       <field>
         <name>trip_percent</name>
-        <rename/>
       </field>
       <field>
         <name>wb_gdppc</name>
@@ -1257,11 +1298,9 @@
       </field>
       <field>
         <name>lgdppc_wb</name>
-        <rename/>
       </field>
       <field>
         <name>religiosity_percent</name>
-        <rename/>
       </field>
       <field>
         <name>relpc_rcs</name>
@@ -1281,75 +1320,57 @@
       </field>
       <field>
         <name>lgb_legal</name>
-        <rename/>
       </field>
       <field>
         <name>lgb_const</name>
-        <rename/>
       </field>
       <field>
         <name>lgb_broad</name>
-        <rename/>
       </field>
       <field>
         <name>lgb_employ</name>
-        <rename/>
       </field>
       <field>
         <name>lgb_hatecrime</name>
-        <rename/>
       </field>
       <field>
         <name>lgb_incitement</name>
-        <rename/>
       </field>
       <field>
         <name>lgb_banconv</name>
-        <rename/>
       </field>
       <field>
         <name>lgb_marriage</name>
-        <rename/>
       </field>
       <field>
         <name>lgb_unions</name>
-        <rename/>
       </field>
       <field>
         <name>lgb_jointadoption</name>
-        <rename/>
       </field>
       <field>
         <name>lgb_secondparentadoption</name>
-        <rename/>
       </field>
       <field>
         <name>lgb_score</name>
-        <rename/>
       </field>
       <field>
         <name>lgb_percent</name>
-        <rename/>
       </field>
       <field>
         <name>no_dircrim</name>
-        <rename/>
       </field>
       <field>
         <name>no_indcrim</name>
-        <rename/>
       </field>
       <field>
         <name>nophys</name>
-        <rename/>
       </field>
       <field>
         <name>nopsych</name>
-        <rename/>
       </field>
       <field>
         <name>nodiv</name>
-        <rename/>
       </field>
       <select_unspecified>N</select_unspecified>
       <remove>
@@ -1562,6 +1583,124 @@
     </GUI>
   </step>
   <step>
+    <name>Remove_unnecessary_values</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>country_name</name>
+      </field>
+      <field>
+        <name>year</name>
+      </field>
+      <field>
+        <name>regime_type</name>
+      </field>
+      <field>
+        <name>geo_region</name>
+      </field>
+      <field>
+        <name>has_direct_criminalization</name>
+      </field>
+      <field>
+        <name>has_indirect_criminalization</name>
+      </field>
+      <field>
+        <name>has_gender_marker_change</name>
+      </field>
+      <field>
+        <name>gmc_prohibitive</name>
+      </field>
+      <field>
+        <name>gmc_physiological</name>
+      </field>
+      <field>
+        <name>gmc_psychological</name>
+      </field>
+      <field>
+        <name>gmc_divorce</name>
+      </field>
+      <field>
+        <name>has_non_binary</name>
+      </field>
+      <field>
+        <name>has_antidiscrimination_protection</name>
+      </field>
+      <field>
+        <name>has_constitutional_protection</name>
+      </field>
+      <field>
+        <name>has_employment_protection</name>
+      </field>
+      <field>
+        <name>has_education_protection</name>
+      </field>
+      <field>
+        <name>has_healthcare_protection</name>
+      </field>
+      <field>
+        <name>has_housing_protection</name>
+      </field>
+      <field>
+        <name>trip_score</name>
+      </field>
+      <field>
+        <name>trip_percent</name>
+      </field>
+      <field>
+        <name>gdp_per_capita</name>
+      </field>
+      <field>
+        <name>percent_religious</name>
+      </field>
+      <field>
+        <name>percent_christian</name>
+      </field>
+      <field>
+        <name>percent_muslim</name>
+      </field>
+      <field>
+        <name>percent_non_religious</name>
+      </field>
+      <field>
+        <name>fk_temporal</name>
+      </field>
+      <field>
+        <name>fk_location</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <remove>
+        <name>year</name>
+      </remove>
+      <remove>
+        <name>geo_region</name>
+      </remove>
+      <remove>
+        <name>country_name</name>
+      </remove>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>720</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Remover_ano_1999</name>
     <type>FilterRows</type>
     <description/>
@@ -1606,8 +1745,8 @@
     </GUI>
   </step>
   <step>
-    <name>Remove_unnecessary_values</name>
-    <type>SelectValues</type>
+    <name>Tableoutput_1</name>
+    <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1616,125 +1755,24 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <connection>supabase</connection>
+    <schema>public</schema>
+    <table>fact</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>N</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
     <fields>
-      <field>
-        <name>country_name</name>
-        <rename/>
-      </field>
-      <field>
-        <name>year</name>
-        <rename/>
-      </field>
-      <field>
-        <name>regime_type</name>
-        <rename/>
-      </field>
-      <field>
-        <name>geo_region</name>
-        <rename/>
-      </field>
-      <field>
-        <name>has_direct_criminalization</name>
-        <rename/>
-      </field>
-      <field>
-        <name>has_indirect_criminalization</name>
-        <rename/>
-      </field>
-      <field>
-        <name>has_gender_marker_change</name>
-        <rename/>
-      </field>
-      <field>
-        <name>gmc_prohibitive</name>
-        <rename/>
-      </field>
-      <field>
-        <name>gmc_physiological</name>
-        <rename/>
-      </field>
-      <field>
-        <name>gmc_psychological</name>
-        <rename/>
-      </field>
-      <field>
-        <name>gmc_divorce</name>
-        <rename/>
-      </field>
-      <field>
-        <name>has_non_binary</name>
-        <rename/>
-      </field>
-      <field>
-        <name>has_antidiscrimination_protection</name>
-        <rename/>
-      </field>
-      <field>
-        <name>has_constitutional_protection</name>
-        <rename/>
-      </field>
-      <field>
-        <name>has_employment_protection</name>
-        <rename/>
-      </field>
-      <field>
-        <name>has_education_protection</name>
-        <rename/>
-      </field>
-      <field>
-        <name>has_healthcare_protection</name>
-        <rename/>
-      </field>
-      <field>
-        <name>has_housing_protection</name>
-        <rename/>
-      </field>
-      <field>
-        <name>trip_score</name>
-        <rename/>
-      </field>
-      <field>
-        <name>trip_percent</name>
-        <rename/>
-      </field>
-      <field>
-        <name>gdp_per_capita</name>
-        <rename/>
-      </field>
-      <field>
-        <name>percent_religious</name>
-        <rename/>
-      </field>
-      <field>
-        <name>percent_christian</name>
-        <rename/>
-      </field>
-      <field>
-        <name>percent_muslim</name>
-        <rename/>
-      </field>
-      <field>
-        <name>percent_non_religious</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fk_temporal</name>
-        <rename/>
-      </field>
-      <field>
-        <name>fk_location</name>
-        <rename/>
-      </field>
-      <select_unspecified>N</select_unspecified>
-      <remove>
-        <name>year</name>
-      </remove>
-      <remove>
-        <name>geo_region</name>
-      </remove>
-      <remove>
-        <name>country_name</name>
-      </remove>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -1745,8 +1783,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>720</xloc>
-      <yloc>384</yloc>
+      <xloc>320</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1892,13 +1930,13 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>sad-connection-tempo</connection>
+    <connection>supabase</connection>
     <schema>public</schema>
     <table>fact</table>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
+    <use_batch>N</use_batch>
     <specify_fields>N</specify_fields>
     <partitioning_enabled>N</partitioning_enabled>
     <partitioning_field/>
@@ -1920,7 +1958,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
+      <xloc>512</xloc>
       <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
